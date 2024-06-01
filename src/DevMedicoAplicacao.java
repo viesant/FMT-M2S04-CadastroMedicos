@@ -1,4 +1,5 @@
 import entities.Medico;
+import enums.Operacao;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,30 +13,31 @@ public class DevMedicoAplicacao {
 
   public void executar() {
     Scanner sc = new Scanner(System.in);
-    String opcao;
-    boolean run = true;
+    Operacao opcao = null;
 
-    //    Operacao opcao1 = Operacao.ADICIONAR;
+    boolean run = true;
 
     while (run) {
       MedicoCLI.exibirMenu();
+
       opcao = MedicoCLI.respostaMenu(sc);
 
       switch (opcao) {
-        case "1":
+        case ADICIONAR:
           addNovoMedico(sc);
           enterContinuar(sc);
           break;
-        case "2":
+        case LISTAR:
           listarMedico();
           enterContinuar(sc);
           break;
-        case "0":
+        case SAIR:
           System.out.println("SAIR");
           run = false;
           break;
-        default:
+        case INVALIDO:
           System.out.println("Opção inválida, tente novamente!");
+          break;
       }
     }
     System.out.println("SISTEMA ENCERRADO!");

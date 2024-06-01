@@ -1,3 +1,5 @@
+import enums.Operacao;
+
 import java.util.Scanner;
 
 public class MedicoCLI {
@@ -10,8 +12,12 @@ public class MedicoCLI {
             """);
   }
 
-  public static String respostaMenu(Scanner sc) {
+  public static Operacao respostaMenu(Scanner sc) {
     System.out.print("Escolha uma opção: ");
-    return sc.nextLine();
+    try {
+      return Operacao.values()[Integer.parseInt(sc.nextLine())];
+    } catch (Exception e) {
+      return Operacao.INVALIDO;
+    }
   }
 }
